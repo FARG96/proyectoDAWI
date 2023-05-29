@@ -2,36 +2,36 @@ package com.multillantasvc.multillantasvc.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.multillantasvc.multillantasvc.model.Llanta;
+import com.multillantasvc.multillantasvc.model.Producto;
+import com.multillantasvc.multillantasvc.repository.IProductoRepository;
 
 @Service
-public class ProductoServiceImpl implements ILlantaService{
+public class ProductoServiceImpl implements IProductoService {
+
+	@Autowired
+	IProductoRepository iProductoRepository;
 
 	@Override
-	public void save(Llanta llanta) {
-		// TODO Auto-generated method stub
-		
+	public void guardarProducto(Producto producto) {
+		iProductoRepository.save(producto);
 	}
 
 	@Override
-	public List<Llanta> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Producto> obtenerProductos() {
+		return iProductoRepository.findAll();
 	}
 
 	@Override
-	public Llanta buscarLlantaPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Producto buscarProductoPorId(int cod_producto) {
+		return iProductoRepository.findById(cod_producto).orElse(null);
 	}
 
 	@Override
-	public void elminarLlanta(int id) {
-		// TODO Auto-generated method stub
-		
+	public void eliminarProducto(int cod_producto) {
+		iProductoRepository.deleteById(cod_producto);
+
 	}
-	
 
 }

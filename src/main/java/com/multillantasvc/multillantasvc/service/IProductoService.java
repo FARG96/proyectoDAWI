@@ -8,7 +8,7 @@ import com.multillantasvc.multillantasvc.model.Producto;
 public interface IProductoService {
 	
 	void guardarProducto(Producto producto);
-	List<Producto> getAll();
+	List<Producto> obtenerProductos();
 	public Producto buscarProductoPorId(int cod_producto);
 	public void eliminarProducto(int cod_producto);
 }
