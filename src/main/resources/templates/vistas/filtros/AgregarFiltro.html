@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<title>Registro Filtros</title>
+</head>
+
+<body>
+	<div class="container">
+			
+		 <!-- ENIVAMOS LA INFORMACION AL OBJETO CLIENTE-->
+		<form th:action="@{/vistas/filtros/RegistrarFiltro}" th:object="${filtro}"  method="post">
+			<div class="form-group row text-center" >
+				<input type="hidden" th:field="*{id_filtro}" >
+				
+			<!-- combo box Categoria Filtro ----------------------------------------------------------------------------------------------->
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="id_categoriaFiltro">Categoria Filtro : </label>
+				<select th:field="*{id_categoriaFiltro}" class="form-control form-control-sm col-md-6" id="id_categoriaFiltro">
+					<!-- LLENAMOS EL COMBO BOX CON LA LISTA CIUDADES HACIENDO USO DEL FOR-->
+					<option th:each="categoriaFiltro : ${categoriaFiltro}"
+							th:value="${categoriaFiltro.id_categoriaFiltro}"
+							th:text="${categoriaFiltro.nombre_categoriaFiltro}"></option>
+						
+				</select>
+			</div>
+			<!-- combo box Tipo de Vehiculo ----------------------------------------------------------------------------------------------->
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="id_tipovehiculo">Tipo Vehiculo : </label>
+				<select th:field="*{id_tipovehiculo}" class="form-control form-control-sm col-md-6" id="id_tipovehiculo">
+					<!-- LLENAMOS EL COMBO BOX CON LA LISTA CIUDADES HACIENDO USO DEL FOR-->
+					<option th:each="tipovehiculo : ${tipovehiculo}"
+							th:value="${tipovehiculo.id_tipovehiculo}"
+							th:text="${tipovehiculo.nombre_tipovehiculo}"></option>
+					
+				</select>
+			</div>
+			<!-- NOMBRE DEL FILTRO -------------------------------------------------------------------------------------------------------->
+				<label class="col-md-2" for="nombre_filtro">Nombre filtro : </label>
+				<input type="text" th:field="*{nombre_filtro}" class="form-control form-control-sm col-md-6" id="nombre_filtro"
+					placeholder="Nombre filtro">
+					<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre_filtro')}"
+				th:errors="*{nombre_filtro}"></small>
+			</div>
+			<!-- MARCA DEL FILTRO --------------------------------------------------------------------------------------------------------->
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="marca_filtro">Marca filtro : </label>
+				<input type="text" th:field="*{marca_filtro}" class="form-control form-control-sm col-md-6" id="marca_filtro"
+					placeholder="Marca filtro">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('marca_filtro')}"
+				th:errors="*{marca_filtro}"></small>
+			</div>
+			<!-- STOCK FILTRO ------------------------------------------------------------------------------------------------------------->
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="stock_filro">Stock filtro: </label>
+				<input type="text" th:field="*{stock_filtro}" class="form-control form-control-sm col-md-6" id="stock_filtro"
+					placeholder="Stock filtro">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('stock_filtro')}"
+				th:errors="*{stock_filtro}"></small>
+			</div>
+			<!-- PRECIO COSTO ------------------------------------------------------------------------------------------------------------->
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="preciocosto_filtro">Precio costo : </label>
+				<input type="text" th:field="*{preciocosto_filtro}" class="form-control form-control-sm col-md-6" id="preciocosto_filtro"
+					placeholder="Precio costo filtro">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('preciocosto_filtro')}"
+				th:errors="*{preciocosto_filtro}"></small>
+			</div>
+			<!-- PRECIO VENTAR ------------------------------------------------------------------------------------------------------------>
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="precioventa_filtro">Precio venta : </label>
+				<input type="text" th:field="*{precioventa_filtro}" class="form-control form-control-sm col-md-6" id="precioventa_filtro"
+					placeholder="Precio venta filtro">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('precioventa_filtro')}"
+				th:errors="*{precioventa_filtro}"></small>
+			</div>			
+			<div class="card-footer bg-dark">
+				<input type="submit" class="btn btn-primary btn-sm" value="Registrar">
+			</div>
+		</form>
+		</div>
+	</div>
+</body>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="plantilla/templates :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/templates :: header"></header>
+	<div class="container">
+		<div class="card bg-ligth">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">	
+		</div>
+		
+		 <!-- ENIVAMOS LA INFORMACION AL OBJETO CLIENTE-->
+		<form th:action="@{/vistas/lubricantes/save}" th:object="${lubricante}"  method="post">
+			<div class="form-group row text-center" >
+				<input type="hidden" th:field="*{id_lubricante}" >
+				
+				<label class="col-md-2" for="nombre_lubricante">NOMBRE DEL LUBRICANTE : </label>
+				<input type="text" th:field="*{nombre_lubricante}" class="form-control form-control-sm col-md-6" id="nombre_lubricante"
+					placeholder="NOMBRE  DEL LUBRICANTE">
+					<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre_lubricante')}"
+				th:errors="*{nombre_lubricante}"></small>
+			</div>
+			
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="marca_lubricante">MARCA DEL LUBRICANTE : </label>
+				<input type="text" th:field="*{marca_lubricante}" class="form-control form-control-sm col-md-6" id="marca_lubricante"
+					placeholder="MARCA  DEL LUBRICANTE">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('marca_lubricante')}"
+				th:errors="*{marca_lubricante}"></small>
+			</div>
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="capacidad_lubricante">Capacidad del Lubricante : </label>
+				<input type="text" th:field="*{capacidad_lubricante}" class="form-control form-control-sm col-md-6" id="capacidad_lubricante"
+					placeholder="Capacidad del Lubricante">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('capacidad_lubricante')}"
+				th:errors="*{capacidad_lubricante}"></small>
+			</div>
+			<!-- combo box -->
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="categoria_lubricante">CATEGORIAS : </label>
+				<select th:field="*{categoria_lubricante}" class="form-control form-control-sm col-md-6" id="categoria_lubricante">
+					<!-- LLENAMOS EL COMBO BOX CON LA LISTA CIUDADES HACIENDO USO DEL FOR-->
+					<option th:each="categoria : ${categorias}"
+							th:value="${categoria.id_categorialubricante}"
+							th:text="${categoria.nombre_categoria}"></option>
+					
+				</select>
+				<small></small>
+			</div>
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="stock_lubricante">STOCK  : </label>
+				<input type="text" th:field="*{stock_lubricante}" class="form-control form-control-sm col-md-6" id="stock_lubricante"
+					placeholder="STOCK   DEL LUBRICANTE">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('stock_lubricante')}"
+				th:errors="*{stock_lubricante}"></small>
+			</div>
+			
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="preciocosto_lubricante">PRECIO COSTO : </label>
+				<input type="text" th:field="*{preciocosto_lubricante}" class="form-control form-control-sm col-md-6" id="preciocosto_lubricante"
+					placeholder="PRECIO COSTO  DEL LUBRICANTE">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('preciocosto_lubricante')}"
+				th:errors="*{preciocosto_lubricante}"></small>
+			</div>
+			<div class="form-group row text-center">
+				<label class="col-md-2" for="precioventa_lubricante">PRECIO VENTA : </label>
+				<input type="text" th:field="*{precioventa_lubricante}" class="form-control form-control-sm col-md-6" id="precioventa_lubricante"
+					placeholder="STOCK   DEL LUBRICANTE">
+				<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('precioventa_lubricante')}"
+				th:errors="*{precioventa_lubricante}"></small>
+			</div>
+			
+			
+			
+			<div class="card-footer bg-dark">
+				<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+			</div>
+		</form>
+		</div>
+	</div>
+	<footer th:replace="plantilla/templates :: footer "></footer>
+</body>
+
+</html>

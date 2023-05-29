@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/templates :: head">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:replace="plantilla/templates :: header"></header>
+		<div class="container">
+			<h1 th:text="${titulo}"></h1>
+		</div>
+		
+	<div class="container">
+		
+		<a class="btn btn-primary btn-sm" th:href="@{/vistas/lubricantes/CrearLubricante}" 
+		th:text="'NUEVO LUBRICANTE'" title="CREAR NUEVO REGISTRO" >
+		
+		</a>
+		<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">NOMBRES</th>
+				<th scope="col">MARCA</th>
+				<th scope="col">CAPACIDAD</th>
+				<th scope="col">CATEGORIA</th>
+				<th scope="col">STOCK</th>
+				<th scope="col">PRECIO COSTO</th>
+				<th scope="col">PRECIO VENTA</th>
+				<th scope="col">EDITAR</th>
+				<th scope="col">ELIMINAR</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="lb : ${lubricantes}">
+				<th scope="row" th:text="${lb.id_lubricante}">1</th>
+				<td th:text="${lb.nombre_lubricante}"></td>
+				<td th:text="${lb.marca_lubricante}"></td>
+				<td th:text="${lb.capacidad_lubricante}"></td>
+				<td th:text="${lb.categoria_lubricante}"></td>
+				<td th:text="${lb.stock_lubricante}"></td>
+				<td th:text="${lb.preciocosto_lubricante}"></td>
+				<td th:text="${lb.precioventa_lubricante}"></td>
+				<td>
+						<a class="btn btn-success btn-sm" th:href="@{/vistas/lubricantes/editar/} + ${lb.id_lubricante}" th:text="'EDITAR'"
+							title="EDITAR REGISTRO">						
+						</a>
+					</td>
+					<td>
+						<a class="btn btn-danger btn-sm" th:href="@{/vistas/lubricantes/eliminar/} + ${lb.id_lubricante}" th:text="'ELIMINAR'"
+							title="ELIMINAR REGISTRO"
+							onclick="return confirm('ESTAS SEGURO DE ELIMINAR ?')">
+						</a>
+					</td>
+		</tbody>
+	</table>
+	</div>
+	<footer th:replace="plantilla/templates :: footer "></footer>
+
+</body>
+</html>

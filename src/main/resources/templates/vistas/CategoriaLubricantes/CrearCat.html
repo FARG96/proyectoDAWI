@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:replace="plantilla/templates :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/templates :: header"></header>
+	<div class="container">
+		<div class="card bg-ligth">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">	
+		</div>
+		
+		<form th:action="@{/vistas/CategoriaLubricantes/save}" th:object="${categoriaLubri}"  method="post">
+			<div class="form-group row text-center" >
+				<input type="hidden" th:field="*{id_categorialubricante}" >
+				
+				<label class="col-md-2" for="nombre_categoria">NOMBRE DEL LUBRICANTE : </label>
+				<input type="text" th:field="*{nombre_categoria}" class="form-control form-control-sm col-md-6" id="nombre_categoria"
+					placeholder="NOMBRE  DEL LUBRICANTE">
+					<!-- MANEJO DE ERRORES-->
+					<!-- Si este campo tiene errores que me lo muestre -->
+				<small></small>
+			</div>
+				
+			<div class="card-foot bg-dark">
+				<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+			</div>
+		</form>
+		</div>
+	</div>
+	<footer th:replace="plantilla/templates :: footer "></footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantilla/templates :: head">
+<title>LISTADO DE BATERIAS</title>
+</head>
+<body>
+	<header th:replace="plantilla/templates :: header"></header>
+	<div class="container">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+		<a class="btn btn-primary btn-sm"
+			th:href="@{/vistas/Bateria/CrearBateria}" th:text="'NUEVA BATERIA'"
+			title="CREAR NUEVO REGISTRO"> </a>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">TIPO DE VEHICULO</th>
+					<th scope="col">MARCA</th>
+					<th scope="col">MODELO</th>
+					<th scope="col">NRO DE PLACA</th>
+					<th scope="col">STOCK</th>
+					<th scope="col">PRECIO COSTO</th>
+					<th scope="col">PRECIO VENTA</th>
+					<th scope="col">PRECIO A CREDITO</th>
+					<th scope="col">EDITAR</th>
+					<th scope="col">ELIMINAR</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="bt : ${baterias}">
+					<th scope="row" th:text="${bt.id_bateria}">1</th>
+					<td th:text="${bt.id_tipo_vehiculo}"></td>
+					<td th:text="${bt.marca_bateria}"></td>
+					<td th:text="${bt.modelo_bateria}"></td>
+					<td th:text="${bt.numero_placas}"></td>
+					<td th:text="${bt.stock_bateria}"></td>
+					<td th:text="${bt.preciocosto_bateria}"></td>
+					<td th:text="${bt.precioventa_bateria}"></td>
+					<td th:text="${bt.precioventa_bateria_credito}"></td>
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/vistas/Bateria/editar/} + ${bt.id_bateria}"
+						th:text="'EDITAR'" title="EDITAR REGISTRO"> </a></td>
+					<td><a class="btn btn-danger btn-sm"
+						th:href="@{/vistas/Bateria/eliminar/} + ${bt.id_bateria}"
+						th:text="'ELIMINAR'" title="ELIMINAR REGISTRO"
+						onclick="return confirm('ESTAS SEGURO DE ELIMINAR ?')"> </a></td>
+			</tbody>
+		</table>
+		<div class="row">
+			<div col-md-2></div>
+			<div col-md-8>
+				<nav arial-label="Pagination">
+					<ul class="pagination justify-content-center">
+						<li class="page-item" th:each="page : ${pages}">
+						<a class="page-link" th:href="@{|/vistas/Bateria/?page=${page}|}" th:text="${page}"></a>
+						</li>
+						
+					</ul>
+				</nav>
+			
+			</div>
+			<div col-md-2></div>
+		</div>
+	</div>
+	<footer th:replace="plantilla/templates :: footer "></footer>
+
+</body>
+</html>
